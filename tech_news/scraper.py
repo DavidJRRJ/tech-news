@@ -1,7 +1,20 @@
+import requests
+import time
+
+
 # Requisito 1
 def fetch(url):
-    """Seu código deve vir aqui"""
-
+    HEADERS = {"user-agent": "Fake user-agent"}
+    time.sleep(1)
+    try:
+        r = requests.get(url, timeout=3, headers=HEADERS)
+    except requests.exceptions.Timeout:
+        return None
+    if r.status_code == 200:
+        return r.text
+    else:
+        return None
+    
 
 # Requisito 2
 def scrape_updates(html_content):
