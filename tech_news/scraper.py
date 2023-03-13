@@ -1,6 +1,7 @@
 import requests
 import time
 from parsel import Selector
+import re
 
 
 # Requisito 1
@@ -31,7 +32,28 @@ def scrape_next_page_link(html_content):
 
 # Requisito 4
 def scrape_news(html_content):
-    """Seu código deve vir aqui"""
+    sel = Selector(text=html_content)
+
+    url = sel.css('link[rel="canonical"]::attr(href)').get()
+    title = sel.css('h1.entry-title::text').get().replace("\xa0", "")
+    reading_time = sel.css('li.meta-reading-time::text').get()
+    timestamp = sel.css('li.meta-date::text').get()
+    writer = sel.xpath('//span[@class="author"]/a/text()').get()
+    summary = sel.xpath('//div[@class="entry-content"]/p[1]//text()').getall()
+    category = sel.css('span.label::text').get()
+    
+    reading_time = re.findall('\d+', reading_time)[0]
+    summary = "".join(summary).rstrip("\xa0 ")
+
+    return {
+        "url": url,
+        "title": title,
+        "timestamp": timestamp,
+        "writer": writer,
+        "reading_time": int(reading_time),
+        "summary": summary,
+        "category": category,
+    }    
 
 
 # Requisito 5
