@@ -12,11 +12,12 @@ def search_by_title(title):
 # Requisito 8
 def search_by_date(date):
     try:
-        datetime.strptime(date, '%Y-%m-%d')
+        datetime.strptime(date, "%Y-%m-%d")
     except ValueError:
         raise ValueError("Data inválida")
-        
-    query = {"timestamp": datetime.strptime(date, '%Y-%m-%d').strftime('%d/%m/%Y')}
+    query = {
+        "timestamp": datetime.strptime(date, "%Y-%m-%d").strftime("%d/%m/%Y")
+    }
     results = search_news(query)
     return [(result["title"], result["url"]) for result in results]
 
