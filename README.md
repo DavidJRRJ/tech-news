@@ -23,13 +23,35 @@ O projeto **Tech News** foi desenvolvido em Python com o objetivo de fornecer co
 
 ## Como Utilizar
 
-1. **Pré-requisitos:**
-   - Certifique-se de ter o Python instalado em seu ambiente.
-   - Instale as bibliotecas necessárias executando `pip install -r requirements.txt`.
+### Pré-requisitos:
 
-2. **Execução:**
-   - Execute o script principal usando o comando `python main.py`.
-   - Siga as instruções no terminal para realizar consultas e interagir com as notícias.
+- Certifique-se de ter o Docker e o Docker Compose instalados em seu ambiente.
+
+### Execução:
+
+1. **Construir a imagem:**
+   - Navegue até o diretório do projeto no terminal.
+   - Execute o seguinte comando para construir a imagem Docker:
+
+     ```bash
+     docker-compose build
+     ```
+
+2. **Executar o container:**
+   - Após a construção bem-sucedida, execute o seguinte comando para iniciar o container:
+
+     ```bash
+     docker-compose up
+     ```
+
+   - O projeto estará acessível no endereço http://localhost:PORTA, onde "PORTA" é a porta especificada no arquivo `docker-compose.yml`.
+
+3. **Parar o container:**
+   - Para parar o container, utilize o comando:
+
+     ```bash
+     docker-compose down
+     ```
 
 ## Estrutura do Projeto
 
